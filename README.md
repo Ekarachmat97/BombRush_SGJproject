@@ -55,18 +55,17 @@ Gunakan bahasa Indonesia yang singkat dan jelas.
 ## 4. Struktur Folder Unity
 
 Gunakan struktur berikut:
+
 _Game/
-├── _Script/ // Script utama: manager, kontrol sistem
 
-├── _Prefabs/ // Prefab dan script UI
+├── Script/ // Script utama: manager, kontrol sistem
 
-├── _Scenes/ // Semua scene game (*.unity)
+├── Prefabs/ // Prefab dan script UI
 
-├── _Art/ // Sprite, shader, animasi,audio
+├── Scenes/ // Semua scene game (*.unity)
 
+├── Art/ // Sprite, shader, animasi,audio
 
-
-Gunakan prefix `_` untuk folder utama agar terorganisir di Unity Editor.
 
 ---
 
