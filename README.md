@@ -1,84 +1,101 @@
-🤝 BombRush - Collaboration Rules
+# BombRush Collaboration Rules
 
-📁 Project Repo: BombRush_SGJproject🧑‍💻 Tim Development: [seccastudio] + collaborators
+Project repository: `BombRush_SGJproject`  
+Tim development: seccastudio & contributors
 
-📂 Branching Rules
+---
 
-main: branch rilis (stabil, hanya dari hasil merge develop)
+## 1. Branching Strategy
 
-develop: branch pengembangan utama
+Gunakan sistem branching berikut:
 
-feature/nama-fitur: fitur baru (misal: feature/enemy-ai)
+- `main`: Branch produksi (rilis stabil)
+- `develop`: Branch utama untuk pengembangan
+- `feature/nama-fitur`: Untuk pengembangan fitur baru  
+  Contoh: `feature/inventory-system`
+- `hotfix/nama-bug`: Untuk perbaikan bug kritis  
+  Contoh: `hotfix/fix-npe`
+- `prototype/nama`: Untuk eksperimen atau fitur uji coba
 
-hotfix/nama-bug: perbaikan bug yang urgent (misal: hotfix/nullref-inventory)
+---
 
-prototype/nama: untuk eksperimen ide sebelum dimasukkan ke develop
+## 2. Commit Guidelines
 
-💼 Commit Rules
+Format commit:
 
-Gunakan format commit berikut:
+[tags] Penjelasan singkat fitur
 
-[tipe] Nama fitur secara singkat
+Tags yang direkomendasikan:
+
+- `feat`: Fitur baru
+- `fix`: Perbaikan bug
+- `ui`: Perubahan tampilan antarmuka
+- `refactor`: Perubahan struktur kode tanpa mengubah fungsi
+- `docs`: Dokumentasi
+- `test`: Penambahan atau perbaikan testing
 
 Contoh:
 
-[feat] Tambah sistem lempar log
+[feat] Tambahkan sistem crafting
+[fix] Perbaiki bug pada deteksi monster
 
-[fix] Perbaikan posisi deteksi monster
+yaml
+Gunakan bahasa Indonesia yang singkat dan jelas.
 
-[ui] Update tampilan UI inventory
+---
 
-[refactor] Pisahkan logic crafting dari UI
+## 3. Pull Request (PR) Workflow
 
-Tip: Gunakan bahasa Indonesia karena tim kita lokal.
+- Semua perubahan ke `main` dan `develop` harus melalui PR.
+- Deskripsikan isi PR secara ringkas dan jelas.
+- Sertakan alasan perubahan jika perlu.
+- Jangan langsung merge jika PR berisiko konflik — lakukan diskusi dulu.
 
-🔄 Pull Request (PR)
+---
 
-Semua perubahan ke main atau develop harus lewat PR
+## 4. Struktur Folder Unity
 
-Tambahkan deskripsi yang jelas: apa yang diubah, kenapa
+Gunakan struktur berikut:
+`yaml
+_Game/
+├── _Script/ // Script utama: manager, kontrol sistem
+├── _Prefabs/ // Prefab dan script UI
+├── _Scenes/ // Semua scene game (*.unity)
+├── _Art/ // Sprite, shader, animasi,audio`
 
-Assign reviewer jika perlu diskusi
+`yaml
+Gunakan prefix `_` untuk folder utama agar terorganisir di Unity Editor.`
 
-🧠 Folder Struktur (wajib dipatuhi)
+---
 
-Contoh struktur di folder Unity:
+## 5. Git Ignore Rules
 
-Assets/
-│
-├── _ProjectCore         ← logic utama: manager, sistem game
-├── _UI                  ← canvas, prefab UI, script UI
-├── _Scenes              ← semua scene (*.unity)
-├── _Art                 ← asset visual, sprite, shader
-├── _Audio               ← SFX, BGM
-├── _Scripts             ← logic modular tambahan
-├── _Testing             ← fitur eksperimen
+Pastikan file berikut **tidak masuk Git**:
 
-❌ Yang Tidak Boleh Di-commit
+- `Library/`, `Temp/`, `Logs/`, `UserSettings/`
+- Semua file build (*.exe, *.apk)
+- File editor lokal (`.vscode`, `.DS_Store`)
+- Auto-generated file Unity: `*.csproj`, `*.sln`
 
-Pastikan file berikut tidak di-track:
+Gunakan file `.gitignore` Unity standar.
 
-Library/, Temp/, Logs/, UserSettings/
+---
 
-File build (.exe, .apk, dll)
+## 6. Sync & Collaboration Routine
 
-Hasil cache atau .DS_Store
+- Selalu `git pull origin develop` sebelum mulai kerja.
+- `git push` hanya jika perubahan sudah aman dan stabil.
+- Resolve konflik dengan hati-hati dan diskusikan jika perlu.
+- Gunakan branch per fitur agar kolaborasi tetap modular.
 
-Gunakan .gitignore yang sesuai!
+---
 
-⏱️ Sync Rutin
+## 7. Dokumentasi & Komunikasi
 
-Lakukan git pull origin develop sebelum mulai kerja
+- Dokumentasikan fitur atau sistem baru (Notion/GDocs).
+- Gunakan Discord/WA untuk komunikasi real-time.
+- Transparansi dan kejelasan adalah prioritas dalam tim.
 
-Push setelah perubahan selesai dan tidak mengganggu yang lain
+---
 
-Kalau konflik, selesaikan dengan bijak dan diskusi terbuka
-
-🗣️ Komunikasi
-
-Pakai Discord/WhatsApp untuk diskusi cepat
-
-Tulis dokumentasi kecil untuk fitur baru (bisa di Notion/GDoc)
-
-Jangan ragu tanya kalau bingung
-
+**Catatan:** Jika ada peraturan baru atau revisi, harap update file ini secara kolektif melalui PR.
