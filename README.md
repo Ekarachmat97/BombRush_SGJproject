@@ -39,7 +39,6 @@ Contoh:
 [feat] Tambahkan sistem crafting
 [fix] Perbaiki bug pada deteksi monster
 
-yaml
 Gunakan bahasa Indonesia yang singkat dan jelas.
 
 ---
@@ -56,15 +55,18 @@ Gunakan bahasa Indonesia yang singkat dan jelas.
 ## 4. Struktur Folder Unity
 
 Gunakan struktur berikut:
-`yaml
 _Game/
 ├── _Script/ // Script utama: manager, kontrol sistem
-├── _Prefabs/ // Prefab dan script UI
-├── _Scenes/ // Semua scene game (*.unity)
-├── _Art/ // Sprite, shader, animasi,audio`
 
-`yaml
-Gunakan prefix `_` untuk folder utama agar terorganisir di Unity Editor.`
+├── _Prefabs/ // Prefab dan script UI
+
+├── _Scenes/ // Semua scene game (*.unity)
+
+├── _Art/ // Sprite, shader, animasi,audio
+
+
+
+Gunakan prefix `_` untuk folder utama agar terorganisir di Unity Editor.
 
 ---
 
