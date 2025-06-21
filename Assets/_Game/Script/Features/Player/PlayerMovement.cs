@@ -14,9 +14,14 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController controller;
     private Vector3 velocity;
     private float _turnSmoothVelocity;
+    private ParticleSystem dustCloud;
+    private Animator animator;
 
     private void Start()
     {
+        dustCloud = GetComponentInChildren<ParticleSystem>();
+        //animator get children
+        animator = GetComponentInChildren<Animator>();
         controller = GetComponent<CharacterController>();
         GameObject camObj = GameObject.FindGameObjectWithTag("MainCamera");
         if (camObj != null)
@@ -38,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 inputDir = new Vector3(horizontal, 0f, vertical).normalized;
 
         Vector3 moveDir = Vector3.zero;
+        bool isMoving = false;
         if (inputDir.magnitude >= 0.1f && cameraTransform != null)
         {
             float targetAngle = Mathf.Atan2(inputDir.x, inputDir.z) * Mathf.Rad2Deg + cameraTransform.eulerAngles.y;
@@ -45,6 +51,24 @@ public class PlayerMovement : MonoBehaviour
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
             moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            isMoving = true;
+        }
+
+        if (animator != null)
+        animator.SetBool("isMoving", isMoving);
+
+        if (dustCloud != null)
+        {
+            if (isMoving && controller.isGrounded)
+            {
+                if (!dustCloud.isPlaying)
+                    dustCloud.Play();
+            }
+            else
+            {
+                if (dustCloud.isPlaying)
+                    dustCloud.Stop();
+            }
         }
 
         Vector3 move = moveDir.normalized * moveSpeed;
@@ -62,6 +86,9 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetButtonDown("Jump"))
             {
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+                
+                if (animator != null)
+                animator.SetTrigger("isJumping");
             }
         }
         else

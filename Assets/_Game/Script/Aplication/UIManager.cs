@@ -7,11 +7,6 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance;
 
-    //UI GameOver
-    [Header("UI Game Over")]
-    public GameObject gameOverUI;
-    public GameObject deathUI;
-
     private void Awake()
     {
         Instance = this;
@@ -39,38 +34,4 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    //instantite UI GameOver and Parent to Object Canvas
-    public void OpenGameOverUI()
-    {
-        if (gameOverUI != null)
-        {
-            GameObject uiInstance = Instantiate(gameOverUI);
-            uiInstance.transform.SetParent(GameObject.Find("Canvas").transform, false);
-            EnableTarget(uiInstance);
-        }
-    }
-    public void OpenDeathUI()
-    {
-        if (deathUI != null)
-        {
-            GameObject uiInstance = Instantiate(deathUI);
-            uiInstance.transform.SetParent(GameObject.Find("Canvas").transform, false);
-            EnableTarget(uiInstance);
-        }
-    }
-
-    //close UI GameOver and Death
-    public void CloseGameOverUI()
-    {
-        Destroy(gameOverUI);
-    }
-    public void CloseDeathUI()
-    {
-        Destroy(deathUI);
-        PlayerDeath playerDeath = FindFirstObjectByType<PlayerDeath>();
-        if (playerDeath != null)
-        {
-            playerDeath.ReturnToSpawn();
-        }
-    }
 }

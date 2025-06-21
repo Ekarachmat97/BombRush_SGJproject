@@ -10,28 +10,24 @@ public class PlayerDeath : MonoBehaviour
     public float pecahanForce = 5f;
     public float pecahanLifetime = 1.5f;
     public float respawnDelay = 2f;
-    public Transform spawnPoint;
 
-    private Vector3 spawnPosition;
-    private Quaternion spawnRotation;
+    [SerializeField] private GameObject deathUI;
+    private PlayerController playerController;
+
+    void Awake()
+    {
+        playerController = FindFirstObjectByType<PlayerController>();
+    }
 
     private void Start()
     {
-        if (spawnPoint != null)
-        {
-            spawnPosition = spawnPoint.position;
-            spawnRotation = spawnPoint.rotation;
-        }
-        else
-        {
-            spawnPosition = transform.position;
-            spawnRotation = transform.rotation;
-        }
+
     }
 
     public void OnPlayerExplode()
     {
         StartCoroutine(RespawnRoutine());
+        
     }
 
     private IEnumerator RespawnRoutine()
@@ -54,25 +50,23 @@ public class PlayerDeath : MonoBehaviour
         }
 
         yield return new WaitForSeconds(respawnDelay);
-        GameManager.Instance.OnPlayerDeath();
+        // deathUI.SetActive(true);
+        GameManager.Instance.RestartGame();
     }
 
-    //return player to spawn position
-    public void ReturnToSpawn()
-    {
-        //spawn time bomb
-        PlayerController playerController = FindFirstObjectByType<PlayerController>();
-        if (playerController != null)
-        {
-            playerController.SpawnTimeBomb();
-        }
 
-        // Respawn player di posisi awal
-        transform.position = spawnPosition;
-        transform.rotation = spawnRotation;
-        if (playerBody != null)
-            playerBody.SetActive(true);
-            
-        UIManager.Instance.CloseDeathUI();
+
+
+    public void ContinueGame()
+    {
+        // Resume the game
+        GameManager.Instance.ResumeGame();
+    }
+
+    public void ExitGame()
+    {
+        // Go to main menu
+        GameManager.Instance.GoToMainMenu();
+        GameManager.Instance.ResumeGame();
     }
 }

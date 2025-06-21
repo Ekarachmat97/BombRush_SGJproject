@@ -74,7 +74,6 @@ public class GameManager : MonoBehaviour
 
         currentState = GameState.InGame;
         Time.timeScale = 1f;
-        Debug.Log("Game Resumed");
     }
 
     public void RestartGame()
@@ -83,21 +82,10 @@ public class GameManager : MonoBehaviour
         LoadGameplayScene();
     }
 
-    public void OnPlayerDeath()
-    {
-        PauseGame();
-        Debug.Log("Player Died");
-        UIManager.Instance.OpenDeathUI();
-    }
-
     public void GameOver()
     {
         currentState = GameState.GameOver;
         Time.timeScale = 0f;
-        Debug.Log("Game Over");
-        UIManager.Instance.OpenGameOverUI();
-
-
     }
 
     public void QuitGame()

@@ -212,7 +212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55970b8afcf5d8247abc8433672d6525, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdown: 10
+  countdown: 60
   pecahanBombPrefab: {fileID: 5741325593164818348, guid: 98d2cd75abb50ac46aeb586cbda1467a, type: 3}
   jumlahPecahan: 20
   force: 5

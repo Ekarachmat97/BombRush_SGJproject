@@ -13,8 +13,6 @@ public class PlayerController : MonoBehaviour
         if (squadAIs == null || squadAIs.Length == 0)
             Debug.LogWarning("No SquadAI found in the scene!");
 
-        //spawn time bomb   
-       SpawnTimeBomb();
 
     }
 
@@ -24,6 +22,11 @@ public class PlayerController : MonoBehaviour
         {
             ToggleFollow();
         }
+
+        // if (Input.GetKeyDown(KeyCode.T))
+        // {
+        //     SpawnTimeBomb();
+        // }
     }
 
     private void ToggleFollow()
@@ -52,13 +55,13 @@ public class PlayerController : MonoBehaviour
 
     public void SpawnTimeBomb()
     {
+
         if (timeBombPrefab != null && timeBombSpawnPoint != null)
         {
             GameObject timeBomb = Instantiate(timeBombPrefab, timeBombSpawnPoint.position, timeBombSpawnPoint.rotation);
-            timeBomb.transform.SetParent(timeBombSpawnPoint, worldPositionStays: true); 
-            timeBomb.transform.localScale = timeBombPrefab.transform.localScale; 
-            if (timeBomb == null)
-                Debug.LogError("Failed to instantiate TimeBomb prefab. Please check the prefab reference.");
+            timeBomb.transform.SetParent(timeBombSpawnPoint, worldPositionStays: true);
+            timeBomb.transform.localScale = timeBombPrefab.transform.localScale;
+        
         }
         else
         {
